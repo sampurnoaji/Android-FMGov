@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/cardview_shadow_start_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,86 +19,107 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_height="500dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@color/cardview_light_background"
             android:orientation="vertical">
 
-            <TextView
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="115dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="50dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="0dp"
-                android:text="⚡ProUI"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="#000000"
-                android:textSize="40sp" />
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_dark_background"
+                android:paddingTop="25dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/mbohhh"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="110dp"
+                        android:background="@mipmap/LogoIoT_foreground" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50sp"
+                        android:text="IO-T"
+                        android:textAllCaps="true"
+                        android:textColor="#FFFFFF"
+                        android:textSize="40sp" />
+                </TableRow>
+            </TableLayout>
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:text="Please Login or Register"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_dark_background"
+                android:paddingBottom="25dp"
+                android:text="Please Login"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:paddingLeft="20dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
                 android:paddingTop="20dp"
-                android:paddingRight="20dp"
+                android:paddingRight="10dp"
                 android:paddingBottom="20dp">
 
                 <TableRow
-                    android:layout_width="100dp"
-                    android:layout_height="100dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <View
                         android:id="@+id/email"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:foreground="@drawable/ic_mail"
-                        android:paddingTop="20dp"
-                        android:paddingRight="20dp" />
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="18dp"
+                        android:foreground="@drawable/ic_person"/>
 
                     <EditText
                         android:id="@+id/editTextEmail"
-                        android:layout_width="337dp"
-                        android:layout_height="60dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:ems="10"
-                        android:inputType="textEmailAddress" />
+                        android:hint="Username"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@android:color/black"
+                        android:textSize="24" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="105dp">
+                    android:layout_height="wrap_content">
 
                     <View
-                        android:id="@+id/view"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:foreground="@drawable/ic_pass" />
+                        android:id="@+id/pass"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:foreground="@mipmap/ic_password_foreground"/>
 
                     <EditText
                         android:id="@+id/editTextPass"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:ems="10"
-                        android:inputType="textPassword" />
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:textAlignment="viewStart"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
                 </TableRow>
 
             </TableLayout>
@@ -105,7 +127,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/background_light"
+                android:background="@color/cardview_shadow_end_color"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
