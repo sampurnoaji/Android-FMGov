@@ -36,7 +36,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
-                    android:src="@mipmap/LogoIoT_foreground"
+                    android:src="@drawable/logoiot_foreground"
                     app:layout_constraintBottom_toBottomOf="@+id/view2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.35"
