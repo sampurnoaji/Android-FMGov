@@ -1,14 +1,14 @@
-package iot.android.fm.network.response;
+package iot.android.fm.data.model;
 
 import okhttp3.ResponseBody;
 
-public class LoginResponse {
+public class LoginUIModel {
     private boolean isSuccess;
     private ResponseBody response;
     private int httpCode;
     private Throwable throwable;
 
-    public LoginResponse(boolean isSuccess, ResponseBody response, int httpCode, Throwable throwable) {
+    public LoginUIModel(boolean isSuccess, ResponseBody response, int httpCode, Throwable throwable) {
         this.isSuccess = isSuccess;
         this.response = response;
         this.httpCode = httpCode;

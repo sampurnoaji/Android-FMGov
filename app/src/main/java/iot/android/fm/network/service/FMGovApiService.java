@@ -1,12 +1,12 @@
 package iot.android.fm.network.service;
 
 import iot.android.fm.network.request.LoginRequest;
-import iot.android.fm.network.response.LoginResponse;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface FMGovApiService {
     @POST("/asset/system/authentication/login")
-    Call<LoginResponse> login(@Body LoginRequest loginRequest);
+    Call<ResponseBody> login(@Body LoginRequest loginRequest);
 }

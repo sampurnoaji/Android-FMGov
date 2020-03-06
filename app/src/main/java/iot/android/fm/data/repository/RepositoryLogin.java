@@ -1,13 +1,12 @@
 package iot.android.fm.data.repository;
 
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
 import iot.android.fm.network.request.LoginRequest;
 import iot.android.fm.network.response.LoginResponse;
 import iot.android.fm.network.retrofit.RetrofitClient;
 import iot.android.fm.network.service.FMGovApiService;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,24 +20,24 @@ public class RepositoryLogin {
         loginApi = RetrofitClient.getRetrofitInstance().create(FMGovApiService.class);
     }
 
-    public LiveData<LoginResponse> login(String username, String password) {
+    public MutableLiveData<LoginResponse> login(String username, String password) {
         final MutableLiveData<LoginResponse> mutableLiveData = new MutableLiveData<>();
 
         LoginRequest loginRequest = new LoginRequest(username, password);
 
-        loginApi.login(loginRequest).enqueue(new Callback<LoginResponse>() {
+        loginApi.login(loginRequest).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                if (response.isSuccessful()){
-                    if (response.body() != null){
-                        mutableLiveData.setValue(response.body());
-                    }
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    mutableLiveData.setValue(new LoginResponse(true, response.body(), response.code(), null));
+                } else {
+                    mutableLiveData.setValue(new LoginResponse(false, response.body(), response.code(), null));
                 }
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                mutableLiveData.setValue(null);
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                mutableLiveData.setValue(new LoginResponse(false, null, 0, t));
             }
         });
         return mutableLiveData;
