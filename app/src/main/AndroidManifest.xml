@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.HomeActivity">
+        <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,8 +22,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.LoginActivity"></activity>
-        <activity android:name=".ui.CameraScanner"></activity>
+        <activity android:name=".ui.HomeActivity"></activity>
+        <activity android:name=".ui.ScannerActivity"></activity>
         <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
     </application>
 

@@ -1,12 +1,8 @@
 package iot.android.fm.ui;
 
 import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Vibrator;
-import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -18,12 +14,11 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import java.io.IOException;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import iot.android.fm.R;
 
-public class CameraScanner extends AppCompatActivity {
+public class ScannerActivity extends AppCompatActivity {
 
     SurfaceView surfaceView;
     BarcodeDetector barcodeDetector;
@@ -53,7 +48,7 @@ public class CameraScanner extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scanqrcode);
+        setContentView(R.layout.activity_scanner);
 
         surfaceView = (SurfaceView)findViewById(R.id.surfaceView);
 
@@ -71,7 +66,7 @@ public class CameraScanner extends AppCompatActivity {
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
                     //Request permission
-                    ActivityCompat.requestPermissions(CameraScanner.this,
+                    ActivityCompat.requestPermissions(ScannerActivity.this,
                             new String[]{Manifest.permission.CAMERA}, RequestCameraPermissionID);
 
                 try {
