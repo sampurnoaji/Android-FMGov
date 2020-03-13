@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">FMGov</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="todo">TODO</string>
+    <string name="pindai">Pindai</string>
+    <string name="iconcode">iconcode</string>
+    <string name="imageButtonQrCode">Qrcode</string>
 </resources>
