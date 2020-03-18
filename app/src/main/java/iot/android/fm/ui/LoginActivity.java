@@ -1,9 +1,13 @@
 package iot.android.fm.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import java.util.prefs.Preferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -25,6 +29,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Context.MODE_PRIVATE);
+        String userName = sharedPreferences.getString("username", null);
+        String password = sharedPreferences.getString("password", null);
+        if (userName != null && password != null ) {
+            doLogin(userName, password);
+        }
+
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
 
@@ -40,6 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         password = binding.editTextPass.getText().toString();
     }
 
+
     private void login() {
 
         getUser();
@@ -48,7 +61,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onChanged(LoginUIModel loginUIModel) {
                 if (loginUIModel.isSuccess()) {
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    SharedPreferences sharedPreferences = getSharedPreferences("preferences", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("username", _nameText.getText().toString();
+                    // this should be salted
+                    editor.putString("password", _passwordText.getText().toString();
+                    editor.commit();
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
                 } else {
                     if (loginUIModel.getThrowable() == null) {
