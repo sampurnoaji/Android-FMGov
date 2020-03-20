@@ -27,15 +27,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private String username;
     private String password;
 
+    private SharedPreference preference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Context.MODE_PRIVATE);
-        String userName = sharedPreferences.getString("username", null);
-        String password = sharedPreferences.getString("password", null);
-        if (userName != null && password != null ) {
-            doLogin(userName, password);
-        }
 
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
@@ -61,12 +56,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onChanged(LoginUIModel loginUIModel) {
                 if (loginUIModel.isSuccess()) {
-                    SharedPreferences sharedPreferences = getSharedPreferences("preferences", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("username", _nameText.getText().toString();
-                    // this should be salted
-                    editor.putString("password", _passwordText.getText().toString();
-                    editor.commit();
                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
                 } else {

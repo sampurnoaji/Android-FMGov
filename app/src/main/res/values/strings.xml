@@ -5,4 +5,7 @@
     <string name="pindai">Pindai</string>
     <string name="iconcode">iconcode</string>
     <string name="imageButtonQrCode">Qrcode</string>
+    
+    <string name="login_preference">iot.android.fm_login_preference</string>
+    <string name="login_status_preference">iot.android.fm_login_status_preference</string>
 </resources>
