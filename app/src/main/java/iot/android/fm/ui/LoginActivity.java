@@ -40,11 +40,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         binding.createAcc.setOnClickListener(this);
 
         loginViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(LoginViewModel.class);
+
+        preference = new SharedPreference(getApplicationContext());
+
     }
 
     private void getUser() {
         username = binding.editTextEmail.getText().toString();
         password = binding.editTextPass.getText().toString();
+
+        if(preference.readLoginStatus())
+        {
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+        }
     }
 
 
@@ -56,8 +65,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onChanged(LoginUIModel loginUIModel) {
                 if (loginUIModel.isSuccess()) {
-                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                    preference.writeLoginStatus(true);
+                    finish();
                 } else {
                     if (loginUIModel.getThrowable() == null) {
                         switch (loginUIModel.getHttpCode()) {

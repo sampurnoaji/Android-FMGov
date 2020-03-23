@@ -11,12 +11,15 @@ import android.widget.ImageButton;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private SharedPreference preference;
     Button buttonPindai;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        preference = new SharedPreference(getApplicationContext());
 
         //set click event of image button but not working
         buttonPindai = findViewById(R.id.buttonPindai);
