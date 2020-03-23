@@ -1,37 +1,43 @@
 package iot.android.fm.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import iot.android.fm.R;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
-    Button buttonPindai;
+import iot.android.fm.R;
+import iot.android.fm.databinding.ActivityHomeBinding;
+
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private ActivityHomeBinding binding;
+    private SharedPreferenceUtil preferenceUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
+        preferenceUtil = new SharedPreferenceUtil(this);
 
-        //set click event of image button but not working
-        buttonPindai = findViewById(R.id.buttonPindai);
-
-        buttonPindai.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, ScannerActivity.class);
-                startActivity(intent);
-            }
-        });
+        binding.buttonPindai.setOnClickListener(this);
+        binding.btnLogout.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.buttonPindai:
+                Intent intent = new Intent(HomeActivity.this, ScannerActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnLogout:
+                preferenceUtil.logoutUser();
+                Intent intentLogout = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(intentLogout);
+                finish();
+                break;
+        }
     }
 }

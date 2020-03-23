@@ -1,9 +1,13 @@
 package iot.android.fm.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import java.util.prefs.Preferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -23,8 +27,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private String username;
     private String password;
 
+    private SharedPreferenceUtil preference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
 
@@ -33,6 +40,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         binding.createAcc.setOnClickListener(this);
 
         loginViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(LoginViewModel.class);
+
+        preference = new SharedPreferenceUtil(this);
+
     }
 
     private void getUser() {
@@ -40,16 +50,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         password = binding.editTextPass.getText().toString();
     }
 
+
     private void login() {
-
         getUser();
-
         loginViewModel.login(username, password).observe(this, new Observer<LoginUIModel>() {
             @Override
             public void onChanged(LoginUIModel loginUIModel) {
                 if (loginUIModel.isSuccess()) {
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    startActivity(intent);
+
+                    preference.loginUser();
+
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                    finish();
                 } else {
                     if (loginUIModel.getThrowable() == null) {
                         switch (loginUIModel.getHttpCode()) {
