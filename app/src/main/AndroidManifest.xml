@@ -14,17 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.LoginActivity">
+        <activity android:name=".ui.LoginActivity" />
+
+        <activity android:name=".ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.SplashActivity"></activity>
-        <activity android:name=".ui.HomeActivity"></activity>
-        <activity android:name=".ui.ScannerActivity"></activity>
+        <activity android:name=".ui.HomeActivity" />
+        <activity android:name=".ui.ScannerActivity" />
         <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
     </application>
 

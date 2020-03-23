@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private String username;
     private String password;
 
-    private SharedPreference preference;
+    private SharedPreferenceUtil preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,32 +41,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         loginViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(LoginViewModel.class);
 
-        preference = new SharedPreference(getApplicationContext());
+        preference = new SharedPreferenceUtil(this);
 
     }
 
     private void getUser() {
         username = binding.editTextEmail.getText().toString();
         password = binding.editTextPass.getText().toString();
-
-        if(preference.readLoginStatus())
-        {
-            startActivity(new Intent(this, HomeActivity.class));
-            finish();
-        }
     }
 
 
     private void login() {
-
         getUser();
-
         loginViewModel.login(username, password).observe(this, new Observer<LoginUIModel>() {
             @Override
             public void onChanged(LoginUIModel loginUIModel) {
                 if (loginUIModel.isSuccess()) {
+
+                    preference.loginUser();
+
                     startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                    preference.writeLoginStatus(true);
                     finish();
                 } else {
                     if (loginUIModel.getThrowable() == null) {

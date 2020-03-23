@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import iot.android.fm.R;
-import retrofit2.http.Header;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -18,11 +18,19 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         new Handler().postDelayed(new Runnable() {
             @Override
-            public void run(){
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(intent);
+            public void run() {
+                SharedPreferenceUtil preferenceUtil = new SharedPreferenceUtil(getApplicationContext());
+
+                if (preferenceUtil.readLoginStatus()) {
+                    Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+
                 finish();
             }
-        },SPLASH_TIME_OUT);
+        }, SPLASH_TIME_OUT);
     }
 }
