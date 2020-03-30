@@ -8,4 +8,5 @@
     
     <string name="login_preference">iot.android.fm_login_preference</string>
     <string name="login_status_preference">iot.android.fm_login_status_preference</string>
+    <string name="pindar_qr_code">Pindai QR Code</string>
 </resources>
